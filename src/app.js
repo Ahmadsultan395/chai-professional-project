@@ -14,4 +14,9 @@ app.use(express.urlencoded({extended:true , limit:"16b"}))
 app.use(express.static("Public"))
 app.use(cookieParser())
 
+// Router import 
+import userRouter from "./routes/user.routes.js"
+app.use("/api/v1/user", userRouter)
+//https://localhost:8000/api/v1/user/registor
+
 export default app;

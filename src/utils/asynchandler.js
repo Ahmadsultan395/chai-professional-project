@@ -1,5 +1,5 @@
 const asynchandler = (requesthandler)=> async (error,req,res,next)=>{
-    try {
+     try {
         await requesthandler(error,req,res,next);
     } catch (error) {
         res.status(error.code || 500).json({
