@@ -1,16 +1,18 @@
-const asynchandler = (requesthandler)=> async (error,req,res,next)=>{
-     try {
-        await requesthandler(error,req,res,next);
+const asynchandler = (requesthandler) => async (req, res, next) => {
+    try {
+        await requesthandler(req, res, next);
     } catch (error) {
-        res.status(error.code || 500).json({
-            success :false,
-            message:error.message
-        })
-       
+        const statusCode = error.code || 500;
+        res.status(statusCode).json({
+            success: false,
+            message: error.message,
+            error: error // Include the original error for debugging
+        });
     }
 }
 
 export default asynchandler;
+
 
 
 // const asynchandler = (requesthandler)=>{
